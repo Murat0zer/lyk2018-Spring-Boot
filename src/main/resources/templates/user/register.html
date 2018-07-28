@@ -15,35 +15,39 @@
             <div class="col-md-6 mb-5">
 
                 <!-- Material form register -->
-                <form th:action="@{/register}" method="POST" th:object="${registrationDto}">
+                <form th:action="@{/register}" th:method="POST" th:object="${registrationDto}">
                     <p class="h4 text-center mb-4">Sign up</p>
 
                     <!-- Material input text -->
                     <div class="md-form">
                         <i class="fa fa-user prefix grey-text"></i>
-                        <input type="text" th:field="*{username}" id="materialFormRegisterNameEx" class="form-control">
-                        <label for="materialFormRegisterNameEx">Your name</label>
+                        <input type="text" th:field="*{username}" id="materialFormRegisterNameEx" class="form-control" th:errorclass="is-invalid">
+                        <label for="materialFormRegisterNameEx">Your username</label>
+                        <div class="invalid-feedback" th:errors="*{username}"></div>
                     </div>
 
                     <!-- Material input email -->
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
-                        <input type="email" th:field="*{email}"id="materialFormRegisterEmailEx" class="form-control">
+                        <input type="email" th:field="*{email}" id="materialFormRegisterEmailEx" class="form-control" th:errorclass="is-invalid">
                         <label for="materialFormRegisterEmailEx">Your email</label>
+                        <div class="invalid-feedback" th:errors="*{email}"></div>
                     </div>
 
                     <!-- Material input email -->
                     <div class="md-form">
                         <i class="fa fa-exclamation-triangle prefix grey-text"></i>
-                        <input type="email" th:field="*{emailConfirmation}" id="materialFormRegisterConfirmEx" class="form-control">
+                        <input type="email" th:field="*{emailConfirmation}" id="materialFormRegisterConfirmEx" class="form-control" th:errorclass="is-invalid">
                         <label for="materialFormRegisterConfirmEx">Confirm your email</label>
+                        <div class="invalid-feedback" th:errors="*{emailConfirmation}"></div>
                     </div>
 
                     <!-- Material input password -->
                     <div class="md-form">
                         <i class="fa fa-lock prefix grey-text"></i>
-                        <input type="password" th:field="*{password}" id="materialFormRegisterPasswordEx" class="form-control">
+                        <input type="password" th:field="*{password}" id="materialFormRegisterPasswordEx" class="form-control" th:errorclass="is-invalid">
                         <label for="materialFormRegisterPasswordEx">Your password</label>
+                        <div class="invalid-feedback" th:errors="*{password}"></div>
                     </div>
 
                     <div class="text-center mt-4">

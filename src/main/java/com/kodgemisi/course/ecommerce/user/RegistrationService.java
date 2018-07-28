@@ -30,8 +30,12 @@ public class RegistrationService {
         userRepository.save(user);
     }
 
-    void createAdmin(User user) {
+    public void createAdmin(User user) {
+        userRepository.save(user);
 
+    }
 
+    public void createAdminUser(User user) {
+        userRepository.save(user);
     }
 }

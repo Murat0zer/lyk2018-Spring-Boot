@@ -45,6 +45,8 @@ public class EcommerceApplication {
                 admin.setLastName("admin");
                 Set<Role> roles = new HashSet<>();
                 roles.add(roleRepository.findByRoleName(Role.RoleName.ADMIN));
+                admin.setRoles(roles);
+                registrationService.createAdmin(admin);
 
                 // Create user has role both admin and user.
                 User adminUser = new User();
@@ -56,6 +58,8 @@ public class EcommerceApplication {
                 Set<Role> adminUserRoles = new HashSet<>();
                 adminUserRoles.add(roleRepository.findByRoleName(Role.RoleName.ADMIN));
                 adminUserRoles.add(roleRepository.findByRoleName(Role.RoleName.USER));
+                adminUser.setRoles(adminUserRoles);
+                registrationService.createAdminUser(adminUser);
             }
         };
     }
