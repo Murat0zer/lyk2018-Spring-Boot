@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: update
+  properties:
+    hibernate:
+      show_sql: true
+      use_sql_comments: true
+      format_sql: true
+      type: trace
+  datasource:
+    url: jdbc:h2:~/development/apps/db/e-commerce-app
+
+
+logging.level:
+  com.kodgemisi.course.ecommerce: trace
+  org.hibernate.type.descriptor.sql.BasicBinder: TRACE

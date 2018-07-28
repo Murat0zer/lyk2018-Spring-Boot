@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main-layout.html">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<main class="mt-5 pt-4" style="margin-top: 5rem!important;">
+    <div class="container wow fadeIn">
+        <!--Grid row-->
+        <div class="row justify-content-md-center">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mb-5">
+
+                <div class="card mx-xl-5">
+                    <div class="card-body">
+
+                        <!--Header-->
+                        <h3 class="my-3 text-center"><i class="fa fa-lock"></i> Login:</h3>
+
+                        <form th:action="@{/login}" th:method="POST">
+
+                            <!-- Material input email -->
+                            <div class="md-form font-weight-light">
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" name="username" id="materialFormEmailEx" class="form-control">
+                                <label for="materialFormEmailEx">Your username</label>
+                            </div>
+
+                            <!-- Material input password -->
+                            <div class="md-form font-weight-light">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input type="password" name="password" id="materialFormPasswordEx" class="form-control">
+                                <label for="materialFormPasswordEx">Your password</label>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button class="btn btn-light-blue" type="submit">Login</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <div class="options font-weight-light">
+                            <p>Not a member? <a th:href="@{/register}">Sign Up</a></p>
+                            <p>Forgot <a href="#">Password?</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- Grid column -->
+        </div>
+    </div>
+</main>
+
+
+</th:block>
+</body>
+</html>

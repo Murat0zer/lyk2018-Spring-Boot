@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main-layout.html">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+<main class="mt-5 pt-4" style="margin-top: 5rem!important;">
+    <div class="container wow fadeIn">
+        <!--Grid row-->
+        <div class="row justify-content-md-center">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mb-5">
+
+                <!-- Material form register -->
+                <form th:action="@{/register}" method="POST" th:object="${registrationDto}">
+                    <p class="h4 text-center mb-4">Sign up</p>
+
+                    <!-- Material input text -->
+                    <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" th:field="*{username}" id="materialFormRegisterNameEx" class="form-control">
+                        <label for="materialFormRegisterNameEx">Your name</label>
+                    </div>
+
+                    <!-- Material input email -->
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="email" th:field="*{email}"id="materialFormRegisterEmailEx" class="form-control">
+                        <label for="materialFormRegisterEmailEx">Your email</label>
+                    </div>
+
+                    <!-- Material input email -->
+                    <div class="md-form">
+                        <i class="fa fa-exclamation-triangle prefix grey-text"></i>
+                        <input type="email" th:field="*{emailConfirmation}" id="materialFormRegisterConfirmEx" class="form-control">
+                        <label for="materialFormRegisterConfirmEx">Confirm your email</label>
+                    </div>
+
+                    <!-- Material input password -->
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix grey-text"></i>
+                        <input type="password" th:field="*{password}" id="materialFormRegisterPasswordEx" class="form-control">
+                        <label for="materialFormRegisterPasswordEx">Your password</label>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </div>
+                </form>
+                <!-- Material form register -->
+
+            </div>
+            <!-- Grid column -->
+        </div>
+    </div>
+</main>
+
+
+</th:block>
+</body>
+</html>
