@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin-layout.html">
+<head>
+    <title>Sample E-Commerce</title>
+
+    <style type="text/css">
+        html,
+        body,
+        .carousel {
+            height: 60vh;
+        }
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+
+    <!-- Default form contact -->
+    <form th:action="@{/admin/products}" th:method="POST" th:object="${productDto}" class="text-center border border-light p-5">
+
+        <p class="h4 mb-4">Create new product</p>
+
+        <!-- Name -->
+        <input type="text" th:field="*{name}" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">
+
+        <div class="form-group">
+            <textarea th:field="*{description}" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Description"></textarea>
+        </div>
+
+        <!-- Email -->
+        <input type="number" th:field="*{stock}" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Stock count">
+
+        <input type="number" th:field="*{price}" class="form-control mb-4" placeholder="Price">
+
+        <input type="text" th:field="*{url}" class="form-control mb-4" placeholder="Url">
+
+        <!-- Subject -->
+        <label>Category</label>
+        <select class="browser-default custom-select mb-4" th:field="*{categoryId}">
+            <option value="">Choose category</option>
+            <option th:each="category : ${categories}"
+                    th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+
+        <!-- Copy -->
+        <!--<div class="custom-control custom-checkbox mb-4">-->
+            <!--<input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">-->
+            <!--<label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>-->
+        <!--</div>-->
+
+        <!-- Send button -->
+        <button class="btn btn-info btn-block" type="submit">Send</button>
+
+    </form>
+    <!-- Default form contact -->
+</th:block>
+</body>
+</html>

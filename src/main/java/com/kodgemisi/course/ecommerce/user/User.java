@@ -36,6 +36,13 @@ public class User implements UserDetails {
 
     private String lastName;
 
+    private boolean enabled = true;
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
@@ -71,6 +78,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 }

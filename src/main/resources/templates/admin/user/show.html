@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin-layout.html">
+<head>
+    <title>Sample E-Commerce</title>
+
+    <style type="text/css">
+        html,
+        body,
+        .carousel {
+            height: 60vh;
+        }
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+
+    <!--Jumbotron-->
+    <div class="jumbotron text-center mdb-color lighten-2 white-text z-depth-2">
+
+        <!--Title-->
+        <h1 class="card-title h2-responsive mt-2 font-bold"><strong th:text="${user.fullName}"></strong></h1>
+        <!--Subtitle-->
+        <p class="mt-4"><strong th:text="${user.email}"></strong></p>
+
+        <!--Text-->
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-2" style="max-width: 43rem;" th:text="${user.username}"></p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-2" style="max-width: 43rem;">
+                <span th:each="role : ${user.roles}" class="badge badge-primary"
+                      th:text="${role.authority}"></span>
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="card-text my-2" style="max-width: 43rem;" th:if="${!user.enabled}"><em>This account is disabled</em></p>
+        </div>
+
+        <hr class="my-4 rgba-white-light">
+
+        <button type="button" class="btn btn-danger">
+            <i class="fa fa-warning ml-1"></i>
+            <span th:text="${user.enabled} ? 'Disable' : 'Enable'" data-toggle="modal" data-target="#centralModalDanger"></span>
+        </button>
+
+    </div>
+    <!--Jumbotron-->
+
+    <!-- Central Modal Medium Danger -->
+    <div class="modal fade" id="centralModalDanger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-danger" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <p class="heading lead">Are you sure about to [[${user.enabled} ? 'disable' : 'enable']]</p>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim,
+                            ab officiis totam.</p>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" class="btn btn-primary" data-dismiss="modal">No, thanks</a>
+                    <form th:action="@{/admin/users/__${user.id}__}" th:method="PATCH">
+                        <input type="hidden" name="enabled" th:value="${!user.enabled}">
+                        <button type="submit" class="btn btn-danger">Yes, sure</button>
+                    </form>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Central Modal Medium Danger-->
+
+</th:block>
+</body>
+</html>

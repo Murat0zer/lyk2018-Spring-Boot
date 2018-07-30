@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin-layout.html">
+<head>
+    <title>Sample E-Commerce</title>
+
+    <style type="text/css">
+        html,
+        body,
+        .carousel {
+            height: 60vh;
+        }
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Manage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}" th:object="${user}">
+                <th scope="row" th:text="*{id}"></th>
+                <td>
+                    <span th:each="role : *{roles}" class="badge badge-primary"
+                          th:text="${role.authority}"></span>
+                </td>
+                <td><a th:href="@{/admin/users/__*{id}__}" th:text="*{username}"></a></td>
+                <td th:text="*{email}"></td>
+                <td th:text="*{firstName}"></td>
+                <td th:text="*{lastName}"></td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-light-blue">Small</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <th:block th:include="common/utils::pagination(${users.number}, ${users.size}, ${users.totalPages})"></th:block>
+
+</th:block>
+</body>
+</html>

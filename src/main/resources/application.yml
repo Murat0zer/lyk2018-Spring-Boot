@@ -1,7 +1,7 @@
 spring:
   jpa:
     open-in-view: false
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create
   properties:
     hibernate:
       show_sql: true
@@ -10,6 +10,8 @@ spring:
       type: trace
   datasource:
     url: jdbc:h2:~/development/apps/db/e-commerce-app
+  messages:
+      basename: ValidationMessages
 
 
 logging.level:

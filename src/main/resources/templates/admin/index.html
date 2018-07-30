@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin-layout.html">
+<head>
+    <title>Sample E-Commerce</title>
+
+    <style type="text/css">
+        html,
+        body,
+        .carousel {
+            height: 60vh;
+        }
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+
+    <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+                <div class="card-title">
+                    Categories
+                </div>
+
+                <!--Card content-->
+                <div class="card-body">
+
+                    <form th:action="@{/admin/categories}" th:method="POST" class="form-inline">
+                        <input type="text" class="form-control" name="name" />
+                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    </form>
+
+                    <!-- Table  -->
+                    <table class="table table-hover">
+                        <!-- Table head -->
+                        <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                        </tr>
+                        </thead>
+                        <!-- Table head -->
+
+                        <!-- Table body -->
+                        <tbody>
+                        <tr th:each="category : ${categories}">
+                            <th scope="row" th:text="${category.id}"></th>
+                            <td th:text="${category.name}"></td>
+                        </tr>
+                        </tbody>
+                        <!-- Table body -->
+                    </table>
+                    <!-- Table  -->
+
+                </div>
+
+            </div>
+            <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</th:block>
+</body>
+</html>

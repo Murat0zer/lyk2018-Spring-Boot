@@ -1,0 +1,16 @@
+<th:block th:fragment="pagination(number, size, totalPages)" xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${number == 0} ? 'disabled'">
+                <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(page=${number - 1}, size=${size})}">Previous</a>
+            </li>
+            <li class="page-item" th:classappend="${number == (index - 1)} ? 'active'"
+                th:each="index : ${#numbers.sequence(1, totalPages)}">
+                <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(page=${index-1}, size=${size})}" th:text="${index}"></a>
+            </li>
+            <li class="page-item" th:classappend="${number == (totalPages - 1)} ? 'disabled'">
+                <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(page=${number + 1}, size=${size})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+</th:block>

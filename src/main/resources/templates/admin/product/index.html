@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin-layout.html">
+<head>
+    <title>Sample E-Commerce</title>
+
+    <style type="text/css">
+        html,
+        body,
+        .carousel {
+            height: 60vh;
+        }
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}" th:object="${product}">
+                <th scope="row" th:text="*{id}"></th>
+                <td th:text="*{name}"></td>
+                <td th:text="*{description}"></td>
+                <td><span class="badge badge-primary" th:text="*{category.name}"></span></td>
+                <td th:text="*{price}"></td>
+                <td th:text="*{stock}"></td>
+                <td th:text="*{#temporals.format(creationDate, 'dd MMM, yyyy')}"></td>
+                <td>
+                    <div class="text-center">
+                        <img th:src="*{url}" class="img-thumbnail" alt="placeholder">
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-light-blue">Small</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <th:block th:include="common/utils::pagination(${products.number}, ${products.size}, ${products.totalPages})"></th:block>
+
+</th:block>
+</body>
+</html>

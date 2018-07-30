@@ -56,33 +56,38 @@
 
             <!-- Right -->
             <ul class="navbar-nav nav-flex-icons">
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link waves-effect" th:href="@{/cart}">-->
-                        <!--<span class="badge red z-depth-1 mr-1"> 1 </span>-->
-                        <!--<i class="fa fa-shopping-cart"></i>-->
-                        <!--<span class="clearfix d-none d-sm-inline-block"> Cart </span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        My Profile
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <th:block sec:authorize="!isAuthenticated()">
-                            <a class="dropdown-item" th:href="@{/login}">Login</a>
-                            <a class="dropdown-item" th:href="@{/register}">Register</a>
-                        </th:block>
-                        <th:block sec:authorize="isAuthenticated()">
+                <th:block sec:authorize="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" th:href="@{/cart}">
+                            <span class="badge red z-depth-1 mr-1"></span>
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" th:href="@{/register}" th:text="Register"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link border border-light rounded waves-effect waves-effect" th:href="@{/login}" th:text="Login"></a>
+                    </li>
+                </th:block>
+                <th:block sec:authorize="isAuthenticated()">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My Profile
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#" sec:authentication="principal.username"></a>
-                            <a class="dropdown-item" href="#" sec:authorize="hasAuthority('ADMIN')">Admin Dashboard</a>
+                            <a class="dropdown-item" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')">Admin Dashboard</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">
                                 <form th:action="@{/logout}" method="POST">
                                     <input type="submit" class="btn btn-link" value="Logout">
                                 </form>
                             </a>
-                        </th:block>
-                    </div>
-                </li>
+                        </div>
+                    </li>
+                </th:block>
             </ul>
 
         </div>
